@@ -1,8 +1,14 @@
 import logo from './logo.svg';
 import {Navbar,Container,Nav,Row,Col} from 'react-bootstrap';
 import './App.css';
+import data from './data.js';
+import { useState } from 'react';
+import Card from './Card.js';
 
 function App() {
+
+let [shoes]= useState(data);
+
   return (
     <div className="App">
       <Navbar bg="light" variant="light">
@@ -19,31 +25,18 @@ function App() {
       <div className='main-bg'></div>
       <Container>
       <Row>
-        <Col>
-        <div>
-          <img src="https://codingapple1.github.io/shop/shoes1.jpg" width="80%"/>
-          <h4>상품명</h4>
-          <p>상품설명</p>
-        </div>
-        </Col>
-        <Col>
-        <div>
-          <img src="https://codingapple1.github.io/shop/shoes2.jpg" width="80%"/>
-          <h4>상품명</h4>
-          <p>상품설명</p>
-        </div>
-        </Col>
-        <Col>
-        <div>
-          <img src="https://codingapple1.github.io/shop/shoes3.jpg" width="80%"/>
-          <h4>상품명</h4>
-          <p>상품설명</p>
-        </div>
-        </Col>
+        {
+          shoes.map((v,i)=>{
+            return (
+            <Col key={i}>
+            <Card value={v} key={i}/>
+            </Col>
+            );
+          })
+        }
       </Row>
     </Container>
     </div>
   );
 }
-
 export default App;
