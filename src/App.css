@@ -10,6 +10,10 @@
   right:30px;
   bottom:20px;
 }
+
+.alert {
+  background-color: burlywood;
+}
 .App {
   text-align: center;
 }
