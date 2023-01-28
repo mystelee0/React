@@ -61,7 +61,9 @@ let navigate=useNavigate();
           </>
         } />
         
-        <Route path="/detail/:id" element={ <Detail shoes={data}/> } />
+        <Route path="/detail" element={ <Detail shoes={data}/> } >
+          <Route path=":id" element={ <Detail shoes={data}/> } />
+        </Route>
         
         {/*nested routes -여러 유사한 페이지 필요할 때*/}
         <Route path="/event" element={ <Event/> } >
