@@ -6,9 +6,13 @@ import { useState } from 'react';
 import Card from './Card.js';
 import {Routes,Route,Link,useNavigate,Outlet} from 'react-router-dom';
 import Detail from './pages/Detail.js';
+import axios from 'axios';
+
 function App() {
 
 let [shoes,setshoes]= useState(data);
+let [count,setcount]=useState(2);
+let [loading,setloading]=useState(false);
 let navigate=useNavigate();
 
   return (
@@ -46,7 +50,7 @@ let navigate=useNavigate();
 
             {/** 상품 카드 나열 */}
           <Container>
-          <Row>
+          <Row md={3}>
             {
               shoes.map((v,i)=>{
                 return (
@@ -58,6 +62,26 @@ let navigate=useNavigate();
             }
           </Row>
           </Container>
+            {
+              loading==true?<div>로딩중</div>:null
+            }
+          <button onClick={()=>{
+            if(count>3){
+              alert('상품이 없습니다.');
+              return;
+            }
+            setloading(true);
+            axios.get( 'https://codingapple1.github.io/shop/data'+count+'.json')
+            .then((result)=>{
+              setcount( (prev) =>{ return prev+1} );
+              let copy=[...shoes,...result.data];
+              setshoes(copy);
+              setloading(false);
+            })
+            .catch(()=>{
+              console.log('실패');
+            })
+          }}>더보기</button>
           </>
         } />
         
