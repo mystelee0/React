@@ -15,6 +15,7 @@ let [count,setcount]=useState(2);
 let [loading,setloading]=useState(false);
 let navigate=useNavigate();
 
+  
   return (
     <div className="App">
       {/** 네비게이션 */}
@@ -85,8 +86,8 @@ let navigate=useNavigate();
           </>
         } />
         
-        <Route path="/detail" element={ <Detail shoes={data}/> } >
-          <Route path=":id" element={ <Detail shoes={data}/> } />
+        <Route path="/detail" element={ <Detail shoes={shoes} /> } >
+          <Route path=":id" element={ <Detail shoes={shoes}/> } />
         </Route>
         
         {/*nested routes -여러 유사한 페이지 필요할 때*/}
