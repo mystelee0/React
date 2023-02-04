@@ -1,9 +1,12 @@
 import { useEffect, useState } from "react";
 import { Nav} from "react-bootstrap";
 import { useParams } from "react-router-dom";
+import {useDispatch} from "react-redux";
+import {addStock} from "../store.js";
+
 
 function Detail(props){
-
+  let dispatch=useDispatch();
   let {id}=useParams();
   if(id==null) id=0;
   let product=props.shoes.find((x)=>{return x.id==id});
@@ -34,7 +37,7 @@ function Detail(props){
       setcheck(true);
     else setcheck(false);
   },[input]);
-
+  
   return (
     <div className={'start '+fade}>
         <div className="container">
@@ -53,7 +56,9 @@ function Detail(props){
       <h4 className="pt-5">{product.title}</h4>
       <p>{product.content}</p>
       <p>{product.price}</p>
-      <button className="btn btn-danger">주문하기</button> 
+      <button className="btn btn-danger" onClick={()=>{
+        dispatch(addStock({id : product.id, name : product.title, count : 1}))
+        }}>주문하기</button> 
     </div>
   </div>
 

@@ -7,6 +7,7 @@ import Card from './Card.js';
 import {Routes,Route,Link,useNavigate,Outlet} from 'react-router-dom';
 import Detail from './pages/Detail.js';
 import axios from 'axios';
+import Cart from './pages/Cart.js';
 
 function App() {
 
@@ -27,6 +28,7 @@ let navigate=useNavigate();
             <Nav.Link href="#features">먹거리</Nav.Link>
             <Nav.Link href="#pricing">전자제품</Nav.Link>
             <Nav.Link onClick={ ()=>{ navigate('/detail')} }>상세페이지</Nav.Link>
+            <Nav.Link onClick={ ()=>{ navigate('/cart')} }>카트</Nav.Link>
           </Nav>
         </Container>
       </Navbar>
@@ -90,6 +92,8 @@ let navigate=useNavigate();
           <Route path=":id" element={ <Detail shoes={shoes}/> } />
         </Route>
         
+        <Route path="/cart" element={ <Cart/> } />
+
         {/*nested routes -여러 유사한 페이지 필요할 때*/}
         <Route path="/event" element={ <Event/> } >
           <Route path="one" element={ <div>첫 주문시 양배추즙 서비스</div> }/>
